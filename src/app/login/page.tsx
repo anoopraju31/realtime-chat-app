@@ -13,7 +13,7 @@ const LoginPage: FC<PageProps> = ({}) => {
 		setIsLoading(true)
 
 		try {
-			throw new Error('Does not work!')
+			// throw new Error('Does not work!')
 			await signIn('google')
 		} catch (error) {
 			// display error message
