@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Icon, Icons } from '@/components/Icons'
 import Image from 'next/image'
 import { FriendRequestSidebarOption, SignOutButton } from '@/components'
+import { fetchRedis } from '@/helpers/redis'
 
 interface LayoutProps {
 	children: ReactNode
@@ -34,6 +35,13 @@ const layout: FC<LayoutProps> = async ({ children }) => {
 	if (!session) {
 		notFound()
 	}
+
+	const unseenRequestCount = (
+		(await fetchRedis(
+			'smembers',
+			`user:${session.user.id}:incoming_friend_request`,
+		)) as User[]
+	).length
 
 	return (
 		<div className='w-full flex h-screen'>
@@ -76,7 +84,10 @@ const layout: FC<LayoutProps> = async ({ children }) => {
 						</li>
 
 						<li className=''>
-							<FriendRequestSidebarOption />
+							<FriendRequestSidebarOption
+								sessionId={session.user.id}
+								initialUnseenFriendRequestCount={unseenRequestCount}
+							/>
 						</li>
 
 						<li className='-mx-6 mt-auto flex items-center'>

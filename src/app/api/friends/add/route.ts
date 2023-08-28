@@ -52,7 +52,7 @@ export async function POST(req: Request) {
 			return new Response('Already friend with this user', { status: 400 })
 
 		// * ----- valid request, send a friend request -----
-		db.sadd(`user:${idToAdd}:incomming_friend_request`, session.user.id)
+		db.sadd(`user:${idToAdd}:incoming_friend_request`, session.user.id)
 
 		return new Response('ok', { status: 200 })
 	} catch (error) {
