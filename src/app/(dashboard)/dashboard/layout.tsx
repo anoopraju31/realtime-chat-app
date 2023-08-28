@@ -5,7 +5,7 @@ import { authOptions } from '@/lib/auth'
 import Link from 'next/link'
 import { Icon, Icons } from '@/components/Icons'
 import Image from 'next/image'
-import { SignOutButton } from '@/components'
+import { FriendRequestSidebarOption, SignOutButton } from '@/components'
 
 interface LayoutProps {
 	children: ReactNode
@@ -73,6 +73,10 @@ const layout: FC<LayoutProps> = async ({ children }) => {
 									)
 								})}
 							</ul>
+						</li>
+
+						<li className=''>
+							<FriendRequestSidebarOption />
 						</li>
 
 						<li className='-mx-6 mt-auto flex items-center'>
