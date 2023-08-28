@@ -5,6 +5,7 @@ import { authOptions } from '@/lib/auth'
 import Link from 'next/link'
 import { Icon, Icons } from '@/components/Icons'
 import Image from 'next/image'
+import { SignOutButton } from '@/components'
 
 interface LayoutProps {
 	children: ReactNode
@@ -94,6 +95,8 @@ const layout: FC<LayoutProps> = async ({ children }) => {
 									</span>
 								</div>
 							</div>
+
+							<SignOutButton className='h-full aspect-square' />
 						</li>
 					</ul>
 				</nav>
